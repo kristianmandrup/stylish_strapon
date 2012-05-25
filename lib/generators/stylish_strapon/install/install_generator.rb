@@ -5,13 +5,13 @@ module StylishStrapon
     class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path("../templates", __FILE__)
 
+      argument :indexes, :type => :array,   :default => ['basic', 'ricco'], :desc => %q{Index yml files to use as templates for stylesheet generation}
+
       class_option :path, :type => :string, :desc => %q{Path to stylesheet_index.yml to be used to copy stylesheets.
 Allows finer control of which styles to copy into project}
 
       class_option :gemfile, :type => :boolean, :default => false, :desc => %q{Update gemfile?}
-
-      class_option :indexes, :type => :array,   :default => [], :desc => %q{Index yml files to use as templates for stylesheet generation}
-
+    
       def run_generation
         say "Styling your app with: #{indexes}"
 
@@ -33,10 +33,6 @@ Allows finer control of which styles to copy into project}
         puts "bundle"
         puts ""
         puts "#{'*'*70}"
-      end
-
-      def indexes
-        options[:indexes] || ['basic', 'ricco']
       end
 
       def path
