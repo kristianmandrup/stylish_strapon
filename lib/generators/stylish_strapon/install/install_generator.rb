@@ -3,7 +3,7 @@ require 'stylish_strapon/stylesheets/builder'
 module StylishStrapon
   module Generators
     class InstallGenerator < ::Rails::Generators::Base
-      source_root File.expand_path("../templates", __FILE__)
+      source_root File.expand_path("../", __FILE__) # templates
 
       argument :indexes, :type => :array,   :default => ['basic', 'ricco'], :desc => "Index yml files to use as templates for stylesheet generation"
 
@@ -19,14 +19,14 @@ Allows finer control of which styles to copy into project}
         remove_file "app/assets/stylesheets/application.css"
         copy_file "stylesheets/application.css.sass", "app/assets/stylesheets/application.css.sass"
 
-        copy_stylesheets :path => options[:path], :indexes => indexes
+        copy_stylesheets :path => path, :indexes => indexes
 
         update_gemfile if update_gemfile?
       end
 
       protected
 
-      # include StylishStrapon::Stylesheets::Builder
+      include StylishStrapon::Stylesheets::Builder
 
       def bundle_warning!
         puts "#{'*'*70}"
@@ -38,7 +38,7 @@ Allows finer control of which styles to copy into project}
       end
 
       def path
-        @path ||= File.dirname(__FILE__) + '/stylesheet_index.yml'
+        @path ||= options[:path] || (File.dirname(__FILE__) + '/indexes')
       end
 
       def update_gemfile?

@@ -6,6 +6,10 @@ module StylishStrapon
       @name, @path = [name, path] 
     end
 
+    def to_s
+      "name: #{name}, path: #{path}"
+    end
+
     def import_path
       File.join path, name
     end
