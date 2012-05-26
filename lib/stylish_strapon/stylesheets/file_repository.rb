@@ -1,6 +1,6 @@
-require 'strapon/stylesheets/stylesheet'
+require 'stylish_strapon/stylesheet'
 
-module Strapon
+module StylishStrapon
   module Stylesheets
     class FileRepository
       def initialize path = nil
@@ -41,10 +41,9 @@ module Strapon
         [hash[:file] || hash[:files]]
       end
 
-
       def add_stylesheet key, path, name
         stylesheets[key] ||= []
-        stylesheets[key] << StylishStrapon::StyleSheet.new path, name
+        stylesheets[key] << StylishStrapon::StyleSheet.new(path, name)
       end
     end
   end

@@ -1,6 +1,6 @@
 module StylishStrapon
   module Generators
-    class TemplateGenerator < Rails::Generators::Base
+    class TemplateGenerator < ::Rails::Generators::Base
       source_root File.expand_path("../templates", __FILE__)
 
       argument :templates, :type => :array,   :default => [:basic, :rico], :desc => %q{Templates to copy}

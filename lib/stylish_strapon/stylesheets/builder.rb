@@ -1,4 +1,4 @@
-require 'strapon/file_repository'
+require 'stylish_strapon/stylesheets/file_repository'
 
 module StylishStrapon
   module Stylesheets
